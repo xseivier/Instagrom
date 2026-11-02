@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useStore, type AccessEvent } from '../store'
-import { CheckIcon, LogoutIcon,  } from '../icons'
+import { CheckIcon, Logo, LogoutIcon, } from '../icons'
 
 export default function Auth() {
   const { current, access, exit } = useStore()
@@ -60,11 +60,12 @@ function LoginForm({ onSubmit }: { onSubmit: (name: string, password: string) =>
 
   return (
     <div className="screen" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-elev)' }}>
-      <div style={{ marginBottom: '30px' }}><span className="wordmark" style={{ fontSize: '50px' }}>Instagram</span></div>
+      <div style={{ marginBottom: '30px', display: 'flex', alignItems: 'center', gap: 20 }}>
+        <Logo size={40} />
+
+        <span className="wordmark" style={{ fontSize: '50px' }}>Instagram</span></div>
       <form className="card auth-form" onSubmit={submit}>
         <div className="row gap-10 center-row">
-          {/* <Logo size={40} /> */}
-
         </div>
         <h2>Iniciar sesión</h2>
 

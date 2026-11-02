@@ -42,17 +42,38 @@ export const PinIcon = (p: P) => (
 /** Original app mark: a gradient tile with a sparkle. */
 export function Logo({ size = 40 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" aria-label="Instagram">
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 40 40" 
+      aria-label="Instagram"
+      style={{ display: 'block' }}
+    >
       <defs>
-        <linearGradient id="lg" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0" stopColor="#feda75" />
-          <stop offset=".35" stopColor="#fa7e1e" />
-          <stop offset=".6" stopColor="#d62976" />
-          <stop offset="1" stopColor="#4f5bd5" />
-        </linearGradient>
+        {/* Gradiente de fondo (base radial + lineal) */}
+        <radialGradient id="ig-radial" cx="20%" cy="100%" r="120%">
+          <stop offset="0%" stopColor="#fdf497" />
+          <stop offset="5%" stopColor="#fdf497" />
+          <stop offset="45%" stopColor="#fd5949" />
+          <stop offset="60%" stopColor="#d6249f" />
+          <stop offset="90%" stopColor="#285AEB" />
+        </radialGradient>
       </defs>
-      <rect width="40" height="40" rx="11" fill="url(#lg)" />
-      <path d="M20 8c1 6.5 3.5 9 12 12-8.5 3-11 5.5-12 12-1-6.5-3.5-9-12-12 8.5-3 11-5.5 12-12z" fill="#fff" />
+
+      {/* Fondo con bordes redondeados */}
+      <rect width="40" height="40" rx="10" fill="url(#ig-radial)" />
+
+      {/* Icono de la cámara */}
+      <g fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        {/* Cuerpo exterior de la cámara */}
+        <rect x="9" y="9" width="22" height="22" rx="6" />
+
+        {/* Lente central */}
+        <circle cx="20" cy="20" r="4.5" />
+      </g>
+
+      {/* Punto del flash */}
+      <circle cx="25.5" cy="14.5" r="1.2" fill="#ffffff" />
     </svg>
-  )
+  );
 }
