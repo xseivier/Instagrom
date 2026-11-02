@@ -4,24 +4,6 @@ import { CheckIcon, Logo, LogoutIcon, } from '../icons'
 
 export default function Auth() {
   const { current, access, exit } = useStore()
-  const webUrl = `https://instagram.com`;
-  const appUrl = `instagram://app`;
-
-  // 1. Detectar si el usuario está en un dispositivo móvil
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    // 2. Intentar abrir la app nativa
-    window.location.href = appUrl;
-
-    // 3. Respaldo: Si la app no está instalada, redirigir a la web después de un breve retraso
-    setTimeout(() => {
-      window.location.href = webUrl;
-    }, 1500);
-  } else {
-    // 4. Si es PC, abrir directamente la versión web en una pestaña nueva
-    window.open(webUrl, '_blank', 'noopener,noreferrer');
-  }
 
   if (current) return <Success event={current} onExit={exit} />
   return <LoginForm onSubmit={access} />
