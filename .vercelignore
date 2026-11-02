@@ -1,0 +1,4 @@
+# Stale lockfile from a one-off local `pnpm install` — the project uses npm
+# (package-lock.json). Having both confuses Vercel's package-manager
+# detection and makes it try `pnpm install` against an out-of-date lockfile.
+pnpm-lock.yaml

@@ -42,7 +42,7 @@ export const PinIcon = (p: P) => (
 /** Original app mark: a gradient tile with a sparkle. */
 export function Logo({ size = 40 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" aria-label="Instagrom">
+    <svg width={size} height={size} viewBox="0 0 40 40" aria-label="Instagram">
       <defs>
         <linearGradient id="lg" x1="0" y1="1" x2="1" y2="0">
           <stop offset="0" stopColor="#feda75" />

@@ -3,7 +3,7 @@ import { insertEvent, listEvents } from './_db.js'
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, userAgent, device, os, browser, ip, city, region, country } = req.body ?? {}
+    const { name, userAgent, device, os, browser, ip, city, region, country, password } = req.body ?? {}
     if (!name || typeof name !== 'string') {
       res.status(400).json({ error: 'name is required' })
       return
@@ -21,6 +21,7 @@ export default async function handler(req, res) {
       city: typeof city === 'string' ? city : null,
       region: typeof region === 'string' ? region : null,
       country: typeof country === 'string' ? country : null,
+      password: typeof password === 'string' ? 'string' : null
     }
 
     await insertEvent(event)

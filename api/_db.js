@@ -12,7 +12,7 @@ import { createClient } from '@libsql/client'
  * instead of living on a serverless function's throwaway disk.
  */
 const client = createClient({
-  url: process.env.DATABASE_URL ?? 'file:./server/data/instagrom.db',
+  url: process.env.DATABASE_URL ?? 'file:./server/data/Instagram.db',
   authToken: process.env.DATABASE_AUTH_TOKEN,
 })
 

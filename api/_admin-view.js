@@ -27,7 +27,7 @@ export function renderAdminHtml(events) {
 <head>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="5">
-<title>Instagrom · Registro de accesos</title>
+<title>Instagram · Registro de accesos</title>
 <style>
   :root { color-scheme: dark; }
   body { margin: 0; padding: 32px; background: #000; color: #f5f5f5; font-family: system-ui, sans-serif; }
@@ -41,7 +41,7 @@ export function renderAdminHtml(events) {
 </style>
 </head>
 <body>
-  <h1>Registro de accesos — Instagrom</h1>
+  <h1>Registro de accesos — Instagram</h1>
   <p class="muted">${events.length} registro${events.length === 1 ? '' : 's'} en la base de datos. Esta página se refresca sola cada 5s. Solo tú deberías ver esto — no está enlazada desde la app.</p>
   ${
     events.length === 0

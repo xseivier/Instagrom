@@ -1,4 +1,4 @@
-# Instagrom
+# Instagram
 
 Proyecto de tesis sobre seguimiento de actividad de inicio de sesión en sitios web. **No es Instagram ni está afiliado con Instagram/Meta** — es un clon visual simplificado, hecho solo con fines de prueba e investigación.
 
@@ -11,7 +11,7 @@ npm install
 npm run dev:all
 ```
 
-Esto levanta el frontend (Vite, puerto 5173) y el backend (puerto 5174) juntos. Sin configurar nada más, los datos se guardan en un archivo SQLite local (`server/data/instagrom.db`), ignorado por git.
+Esto levanta el frontend (Vite, puerto 5173) y el backend (puerto 5174) juntos. Sin configurar nada más, los datos se guardan en un archivo SQLite local (`server/data/Instagram.db`), ignorado por git.
 
 - App: http://localhost:5173
 - Panel de accesos registrados (solo para ti, no enlazado desde la app): http://localhost:5173/api/admin

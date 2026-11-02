@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "Instagrom-dev",
+      "name": "Instagram-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:all"],
       "port": 5173

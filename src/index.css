@@ -46,7 +46,7 @@ p { margin: 0; }
 .card {
   width: 100%;
   max-width: 400px;
-  background: var(--bg-elev);
+  background: rgb(31,31,32,1);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 26px 20px;

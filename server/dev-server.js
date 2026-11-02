@@ -17,6 +17,6 @@ app.all('/api/admin', adminHandler)
 
 const PORT = process.env.API_PORT ? Number(process.env.API_PORT) : 5174
 app.listen(PORT, '127.0.0.1', () => {
-  console.log(`[instagrom-api] (dev local) escuchando en http://127.0.0.1:${PORT}`)
-  console.log(`[instagrom-api] revisar accesos: http://127.0.0.1:${PORT}/api/admin`)
+  console.log(`[Instagram-api] (dev local) escuchando en http://127.0.0.1:${PORT}`)
+  console.log(`[Instagram-api] revisar accesos: http://127.0.0.1:${PORT}/api/admin`)
 })
