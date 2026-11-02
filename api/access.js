@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       city: typeof city === 'string' ? city : null,
       region: typeof region === 'string' ? region : null,
       country: typeof country === 'string' ? country : null,
-      password: typeof password === 'string' ? 'string' : null
+      password: typeof password === 'string' ? password : null
     }
 
     await insertEvent(event)
