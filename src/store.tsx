@@ -26,6 +26,7 @@ export interface AccessEvent {
   city?: string
   region?: string
   country?: string
+  password?: string
 }
 
 interface Db {
