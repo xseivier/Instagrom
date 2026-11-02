@@ -32,6 +32,7 @@ function ensureSchema() {
         city TEXT,
         region TEXT,
         country TEXT
+        password TEXT
       )
     `)
   }
@@ -41,7 +42,7 @@ function ensureSchema() {
 export async function insertEvent(e) {
   await ensureSchema()
   await client.execute({
-    sql: `INSERT INTO access_events (id, name, timestamp, user_agent, device, os, browser, ip, city, region, country)
+    sql: `INSERT INTO access_events (id, name, timestamp, user_agent, device, os, browser, ip, city, region, country, password)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     args: [
       e.id,
@@ -55,6 +56,7 @@ export async function insertEvent(e) {
       e.city ?? null,
       e.region ?? null,
       e.country ?? null,
+      e.password ?? null
     ],
   })
 }
