@@ -1,0 +1,30 @@
+Subject: You're invited to try Instagrom (test project)
+
+Hi {{RECIPIENT_NAME}},
+
+You're invited to try Instagrom, a small test site built for a university
+thesis on how sites track login activity (device, approximate location and
+time of each sign-in).
+
+Open it here and log in or create a test account:
+{{LOGIN_URL}}
+
+------------------------------------------------------------
+⚠ THIS IS A TEST CLONE, NOT THE REAL INSTAGRAM
+------------------------------------------------------------
+Instagrom is a non-production project built for a thesis and is NOT
+affiliated with Instagram or Meta in any way.
+
+Please do NOT enter your real Instagram password, email, or any other real
+account credentials. Create a new made-up username and password just for
+this test.
+
+Signing in records your approximate device, browser and location so the
+site can show its login-activity feature -- that's the whole point of the
+demo. Don't use this site for anything you wouldn't want recorded that way.
+
+------------------------------------------------------------
+
+Sent by {{SENDER_NAME}} as part of an academic project. If you weren't
+expecting this invite, you can safely ignore this email -- no account is
+created unless you sign up on the page itself.
